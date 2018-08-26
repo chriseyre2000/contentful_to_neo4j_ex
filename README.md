@@ -16,6 +16,7 @@ Done:
 - read entries from contentful
 - transform assets into a command that can be sent to neo4j
 - send commands to neo4j
+- transforms the bare entry node
 
 Todo:
 

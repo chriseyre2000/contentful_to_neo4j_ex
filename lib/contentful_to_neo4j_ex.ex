@@ -28,7 +28,7 @@ defmodule ContentfulToNeo4jEx do
     IO.puts "#{length(data.assets)} #{length(data.entries)}"
 
     assets_to_commands(data.assets)
-    # |> entries_to_commands(data.entries)
+    |> entries_to_commands(data.entries)
   end
   
   def assets_to_commands(assets) do
@@ -43,13 +43,12 @@ defmodule ContentfulToNeo4jEx do
     assets_to_commands(assets, [transformed_asset(asset) | commands])
   end
 
-  defp entries_to_commands([], commands) do
+  defp entries_to_commands(commands, []) do
     commands
   end  
 
-  defp entries_to_commands([entry | entries], commands) do
-    entries_to_commands(entries, transformed_entry(entry) ++ commands)
-    commands
+  defp entries_to_commands(commands, [entry | entries]) do
+    entries_to_commands(transformed_entry(entry) ++ commands, entries)
   end  
   
   defp transformed_asset(asset) do    
@@ -61,13 +60,24 @@ defmodule ContentfulToNeo4jEx do
 
   end
  
+  defp transformed_entry(entry) do    
+    entry = %{ query: "CREATE (a:#{entry["sys"]["contentType"]["sys"]["id"]} {cmsid: {cmsId}, contenttype: {contentType}, cmstype: {cmsType}} ) RETURN a", 
+      params: %{ cmsId: entry["sys"]["id"],
+                 contentType: entry["sys"]["contentType"]["sys"]["id"],
+                 cmsType: entry["sys"]["type"]
+                 } 
+    }
+
+    [entry]
+  end
 
   def read_all_assets() do  
     read_assets(500, 0, [])
   end
 
   defp read_assets(batch, skip, acc) do
-    {:ok, assets} = ContentfulToNeo4jEx.ContentfulApi.assets(@space_id, @access_token, batch, skip)
+    {:ok, assets} = ContentfulToNeo4jEx.ContentfulApi.assets(@space_id, @
+    access_token, batch, skip)
 
     acc = acc ++ assets.items
 
