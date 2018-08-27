@@ -1,8 +1,7 @@
-defmodule ContentfulToNeo4jExTest do
-  import ContentfulToNeo4jEx
+defmodule ContentfulToNeo4jEx.Transform.Test do
+  import ContentfulToNeo4jEx.Transform
 
   use ExUnit.Case
-  doctest ContentfulToNeo4jEx
 
   def assets do
     [
@@ -12,7 +11,7 @@ defmodule ContentfulToNeo4jExTest do
             "contentType" => "image/png",
             "details" => %{
               "image" => %{"height" => 887, "width" => 1908},
-              "size" => 100983
+              "size" => 100_983
             },
             "fileName" => "EngineeringHistory.png",
             "url" => "//images.ctfassets.net/wf4wl3wo9c3x/6nvWJT1AkM64so8Auue4QQ/3b21f3ce6654e2cbe42be91d9077d274/EngineeringHistory.png"
@@ -48,7 +47,7 @@ defmodule ContentfulToNeo4jExTest do
             "contentType" => "image/jpeg",
             "details" => %{
               "image" => %{"height" => 999, "width" => 1500},
-              "size" => 277268
+              "size" => 277_268
             },
             "fileName" => "contentful-team-example.jpeg",
             "url" => "//images.ctfassets.net/wf4wl3wo9c3x/4dgP2U7BeMuk0icguS4qGw/f6274bf759ee2bc07020e79bb91a49ab/contentful-team-example.jpeg"
@@ -84,7 +83,7 @@ defmodule ContentfulToNeo4jExTest do
             "contentType" => "image/svg+xml",
             "details" => %{
               "image" => %{"height" => 347, "width" => 765},
-              "size" => 288828
+              "size" => 288_828
             },
             "fileName" => "contentful-four-apis.svg",
             "url" => "//images.ctfassets.net/wf4wl3wo9c3x/1YK5kwroV6UEGS64mQs0Eo/8130fd945210890a786f1e7fb303f1e2/contentful-four-apis.svg"
@@ -120,7 +119,7 @@ defmodule ContentfulToNeo4jExTest do
             "contentType" => "image/svg+xml",
             "details" => %{
               "image" => %{"height" => 215, "width" => 333},
-              "size" => 38421
+              "size" => 38_421
             },
             "fileName" => "content-model-lesson.svg",
             "url" => "//images.ctfassets.net/wf4wl3wo9c3x/1nXjR47jxOagUcc8iU6wUQ/35d26bd05029d3ea905f86cf5701a24b/content-model-lesson.svg"
@@ -156,7 +155,7 @@ defmodule ContentfulToNeo4jExTest do
             "contentType" => "image/svg+xml",
             "details" => %{
               "image" => %{"height" => 567, "width" => 312},
-              "size" => 70800
+              "size" => 70_800
             },
             "fileName" => "content-model-full.svg",
             "url" => "//images.ctfassets.net/wf4wl3wo9c3x/5o1Zu7UJheEGGQUC6gYEmS/2245339ea6df785d7d81fc9a635427a5/content-model-full.svg"
@@ -192,7 +191,7 @@ defmodule ContentfulToNeo4jExTest do
             "contentType" => "image/svg+xml",
             "details" => %{
               "image" => %{"height" => 232, "width" => 708},
-              "size" => 75824
+              "size" => 75_824
             },
             "fileName" => "webapp-contentful-example-app.svg",
             "url" => "//images.ctfassets.net/wf4wl3wo9c3x/3z7ErmBLIccwQkQkuEY0w4/aa5c059d8f293878ae0a7e859c4e28b7/webapp-contentful-example-app.svg"
@@ -228,7 +227,7 @@ defmodule ContentfulToNeo4jExTest do
             "contentType" => "image/png",
             "details" => %{
               "image" => %{"height" => 1290, "width" => 2038},
-              "size" => 325881
+              "size" => 325_881
             },
             "fileName" => "webapp.png",
             "url" => "//images.ctfassets.net/wf4wl3wo9c3x/4CWJDjGTzaU8CMAW2eYeie/0446fca0a17e7db200a014c43a9d69e9/webapp.png"
@@ -264,7 +263,7 @@ defmodule ContentfulToNeo4jExTest do
             "contentType" => "image/svg+xml",
             "details" => %{
               "image" => %{"height" => 303, "width" => 496},
-              "size" => 26022
+              "size" => 26_022
             },
             "fileName" => "json-presentation-layer.svg",
             "url" => "//images.ctfassets.net/wf4wl3wo9c3x/1PzXR2apawY8iYM4o0AUoi/ceeea75d0bfda16a424b4801011b9b7d/json-presentation-layer.svg"
@@ -301,7 +300,7 @@ defmodule ContentfulToNeo4jExTest do
             "contentType" => "image/png",
             "details" => %{
               "image" => %{"height" => 1234, "width" => 1812},
-              "size" => 215648
+              "size" => 215_648
             },
             "fileName" => "validations.png",
             "url" => "//images.ctfassets.net/wf4wl3wo9c3x/6n41KgxfwWmmeCiSemIsK2/9338f3929a49ffd0aaa56a34fb327a4d/validations.png"
@@ -582,7 +581,7 @@ total freedom when it comes to the build of an application that consumes and pre
   test "Can transform asset" do
 
     [asset] = assets() |> Enum.take(1)
-    command = transformed_asset( asset )
+    command = transformed_asset(asset)
     ^command = %Neo4jQuery{params: %{idParam: "6nvWJT1AkM64so8Auue4QQ", titleParam: "Contentful hero", typeParam: "Asset", urlParam: "//images.ctfassets.net/wf4wl3wo9c3x/6nvWJT1AkM64so8Auue4QQ/3b21f3ce6654e2cbe42be91d9077d274/EngineeringHistory.png"}, query: "CREATE (a:asset {cmsid: {idParam}, cmstype: {typeParam}, title: {titleParam}, url: {urlParam}} ) RETURN a"}
   end  
 

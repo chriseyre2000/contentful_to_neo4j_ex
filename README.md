@@ -28,8 +28,8 @@ Todo:
 Important commands to use:
 
 iex -S mix
-set "MIX_ENV=dev"
-
+SET "MIX_ENV=dev"
+:observer.start()
 
 #dev.exs - not included but here is a sample:
 ```
