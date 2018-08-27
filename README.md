@@ -17,14 +17,32 @@ Done:
 - transform assets into a command that can be sent to neo4j
 - send commands to neo4j
 - transforms the bare entry node
+- Transform entries into commands
+- Add tests
 
 Todo:
 
-- Transform entries into commands
-- Add tests
 - Configure the neo4j endpoint in config
+- Handle lists of primitives.
 
 Important commands to use:
 
 iex -S mix
 set "MIX_ENV=dev"
+
+
+#dev.exs - not included but here is a sample:
+```
+use Mix.Config
+
+config :contentful_to_neo4j_ex,
+    space: "INSERT_SPACE_NAME",
+    contentful_access_token: "INSERT_ACCESS_TOKEN"
+
+config :bolt_sips, Bolt,
+  hostname: 'localhost',
+  basic_auth: [username: "neo4j", password: "INSERT_PASSWORD"],
+  port: 7687,
+  pool_size: 10,
+  max_overflow: 5  
+```
