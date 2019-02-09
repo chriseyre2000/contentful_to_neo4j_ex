@@ -29,7 +29,7 @@ defmodule ContentfulToNeo4jEx.Mixfile do
   # Run "mix help deps" to learn about dependencies.
   defp deps do
     [
-      {:httpoison, "~> 0.8"},
+      {:httpoison, "~> 1.5"},
       {:poison, "~> 4.0"},
       {:bolt_sips, "~> 0.4.12"},
       {:credo, "~> 0.10.0"}
