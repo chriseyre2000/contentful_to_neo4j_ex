@@ -32,7 +32,7 @@ defmodule ContentfulToNeo4jEx.Mixfile do
       {:httpoison, "~> 1.5"},
       {:poison, "~> 4.0"},
       {:bolt_sips, "~> 0.4.12"},
-      {:credo, "~> 1.0.2"}
+      {:credo, "~> 1.1.0"}
     ]
   end
 end
